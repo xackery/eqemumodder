@@ -63,49 +63,9 @@ namespace EQEmu_Patcher.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap brokenmirror {
-            get {
-                object obj = ResourceManager.GetObject("brokenmirror", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap rof {
             get {
                 object obj = ResourceManager.GetObject("rof", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap sof {
-            get {
-                object obj = ResourceManager.GetObject("sof", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap titanium {
-            get {
-                object obj = ResourceManager.GetObject("titanium", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap underfoot {
-            get {
-                object obj = ResourceManager.GetObject("underfoot", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

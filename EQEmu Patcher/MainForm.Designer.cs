@@ -38,6 +38,7 @@
             this.chkAutoPlay = new System.Windows.Forms.CheckBox();
             this.chkAutoPatch = new System.Windows.Forms.CheckBox();
             this.pendingPatchTimer = new System.Windows.Forms.Timer(this.components);
+            this.btnSettings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splashLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +46,7 @@
             // 
             this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar.Location = new System.Drawing.Point(10, 521);
+            this.progressBar.Location = new System.Drawing.Point(10, 411);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(400, 39);
             this.progressBar.TabIndex = 0;
@@ -61,13 +62,13 @@
             this.txtList.Name = "txtList";
             this.txtList.ReadOnly = true;
             this.txtList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtList.Size = new System.Drawing.Size(400, 450);
+            this.txtList.Size = new System.Drawing.Size(400, 337);
             this.txtList.TabIndex = 1;
             // 
             // btnStart
             // 
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStart.Location = new System.Drawing.Point(315, 463);
+            this.btnStart.Location = new System.Drawing.Point(315, 353);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(95, 52);
             this.btnStart.TabIndex = 3;
@@ -79,12 +80,12 @@
             // 
             this.splashLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splashLogo.Image = global::EQEmu_Patcher.Properties.Resources.rof;
+            this.splashLogo.Image = ((System.Drawing.Image)(resources.GetObject("splashLogo.Image")));
             this.splashLogo.Location = new System.Drawing.Point(10, 6);
             this.splashLogo.Margin = new System.Windows.Forms.Padding(0);
-            this.splashLogo.MinimumSize = new System.Drawing.Size(400, 450);
+            this.splashLogo.MinimumSize = new System.Drawing.Size(400, 337);
             this.splashLogo.Name = "splashLogo";
-            this.splashLogo.Size = new System.Drawing.Size(400, 450);
+            this.splashLogo.Size = new System.Drawing.Size(400, 337);
             this.splashLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.splashLogo.TabIndex = 4;
             this.splashLogo.TabStop = false;
@@ -92,7 +93,7 @@
             // btnCheck
             // 
             this.btnCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCheck.Location = new System.Drawing.Point(12, 463);
+            this.btnCheck.Location = new System.Drawing.Point(12, 353);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(95, 52);
             this.btnCheck.TabIndex = 6;
@@ -102,8 +103,9 @@
             // 
             // chkAutoPlay
             // 
+            this.chkAutoPlay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chkAutoPlay.AutoSize = true;
-            this.chkAutoPlay.Location = new System.Drawing.Point(238, 463);
+            this.chkAutoPlay.Location = new System.Drawing.Point(238, 353);
             this.chkAutoPlay.Name = "chkAutoPlay";
             this.chkAutoPlay.Size = new System.Drawing.Size(71, 17);
             this.chkAutoPlay.TabIndex = 7;
@@ -113,8 +115,9 @@
             // 
             // chkAutoPatch
             // 
+            this.chkAutoPatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkAutoPatch.AutoSize = true;
-            this.chkAutoPatch.Location = new System.Drawing.Point(113, 463);
+            this.chkAutoPatch.Location = new System.Drawing.Point(113, 353);
             this.chkAutoPatch.Name = "chkAutoPatch";
             this.chkAutoPatch.Size = new System.Drawing.Size(79, 17);
             this.chkAutoPatch.TabIndex = 8;
@@ -126,11 +129,22 @@
             // 
             this.pendingPatchTimer.Tick += new System.EventHandler(this.pendingPatchTimer_Tick);
             // 
+            // btnSettings
+            // 
+            this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSettings.Location = new System.Drawing.Point(158, 376);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(95, 29);
+            this.btnSettings.TabIndex = 9;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 572);
+            this.ClientSize = new System.Drawing.Size(416, 462);
+            this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.chkAutoPatch);
             this.Controls.Add(this.chkAutoPlay);
             this.Controls.Add(this.txtList);
@@ -162,6 +176,7 @@
         private System.Windows.Forms.CheckBox chkAutoPlay;
         private System.Windows.Forms.CheckBox chkAutoPatch;
         private System.Windows.Forms.Timer pendingPatchTimer;
+        private System.Windows.Forms.Button btnSettings;
     }
 }
 

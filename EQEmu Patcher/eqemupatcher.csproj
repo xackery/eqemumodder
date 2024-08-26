@@ -90,8 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientVersion.cs" />
-    <Compile Include="FileListUrl.cs" />
-    <Compile Include="FileName.cs" />
     <Compile Include="IniLibrary.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -99,10 +97,13 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PatcherUrl.cs" />
     <Compile Include="PatchVersion.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ServerName.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="StatusLibrary.cs" />
     <Compile Include="UtilityLibrary.cs" />
     <Compile Include="WinLibrary.cs" />
@@ -111,14 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -135,13 +131,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\rof.png" />
     <None Include="FodyWeavers.xml" />
     <Content Include="icon.ico" />
-    <None Include="Resources\brokenmirror.png" />
-    <None Include="Resources\rof.png" />
-    <None Include="Resources\sof.png" />
-    <None Include="Resources\underfoot.png" />
-    <None Include="Resources\titanium.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -167,22 +159,6 @@
   </Target>
   <Target Name="BeforeBuild">
     <ItemGroup>
-      <AssemblyAttributes Include="EQEmu_Patcher.ServerName">
-        <_Parameter1>$(SERVER_NAME)</_Parameter1>
-        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
-      </AssemblyAttributes>
-      <AssemblyAttributes Include="EQEmu_Patcher.FileListUrl">
-        <_Parameter1>$(FILELIST_URL)</_Parameter1>
-        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
-      </AssemblyAttributes>
-      <AssemblyAttributes Include="EQEmu_Patcher.PatcherUrl">
-        <_Parameter1>$(PATCHER_URL)</_Parameter1>
-        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
-      </AssemblyAttributes>
-      <AssemblyAttributes Include="EQEmu_Patcher.FileName">
-        <_Parameter1>$(FILE_NAME)</_Parameter1>
-        <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
-      </AssemblyAttributes>
       <AssemblyAttributes Include="AssemblyVersion">
         <_Parameter1>$(VERSION)</_Parameter1>
         <_Parameter1_TypeName>System.String</_Parameter1_TypeName>
@@ -194,7 +170,7 @@
     </WriteCodeFragment>
   </Target>
   <Import Project="..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

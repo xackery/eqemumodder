@@ -1,1 +1,4 @@
-# eqemumodder
+# EQEmuModder
+
+Mod your EQ!
+

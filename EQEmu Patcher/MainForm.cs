@@ -17,7 +17,7 @@ namespace EQEmu_Patcher
     public partial class MainForm : Form
     {
 
-        public static string serverName; // server title name
+        public static string serverName;
         public static string filelistUrl; //filelist url
         public static string patcherUrl; //patcher url e.g. eqemupatcher-hash.txt
         public static string version; //version of file
@@ -63,48 +63,15 @@ namespace EQEmu_Patcher
             Console.WriteLine($"Current Directory: {Directory.GetCurrentDirectory()}");
             cts = new CancellationTokenSource();
 
-            serverName = Assembly.GetExecutingAssembly().GetCustomAttribute<ServerName>().Value;
-#if (DEBUG)
-            serverName = "EQEMU Patcher";
-#endif
-            if (serverName == "") {
-                MessageBox.Show("This patcher was built incorrectly. Please contact the distributor of this and inform them the server name is not provided or screenshot this message.");
-                this.Close();
-                return;
-            }
 
-            fileName = Assembly.GetExecutingAssembly().GetCustomAttribute<FileName>().Value;
-#if (DEBUG)
-            fileName = "eqemupatcher";
-#endif
-            if (fileName == "")
-            {
-                MessageBox.Show("This patcher was built incorrectly. Please contact the distributor of this and inform them the file name is not provided or screenshot this message.");
-                this.Close();
-                return;
-            }
+            serverName = "Xack's EQEmu Modder";
 
-            filelistUrl = Assembly.GetExecutingAssembly().GetCustomAttribute<FileListUrl>().Value;
-#if (DEBUG)
+            fileName = "eqemumodder";
+
             filelistUrl = "https://github.com/xackery/eqemupatcher/releases/latest/download";
-#endif
-            if (filelistUrl == "") {
-                MessageBox.Show("This patcher was built incorrectly. Please contact the distributor of this and inform them the file list url is not provided or screenshot this message.", serverName);
-                this.Close();
-                return;
-            }
             if (!filelistUrl.EndsWith("/")) filelistUrl += "/";
 
-            patcherUrl = Assembly.GetExecutingAssembly().GetCustomAttribute<PatcherUrl>().Value;
-#if (DEBUG)
             patcherUrl = $"https://github.com/xackery/eqemupatcher/releases/latest/download/";
-#endif
-            if (patcherUrl == "")
-            {
-                MessageBox.Show("This patcher was built incorrectly. Please contact the distributor of this and inform them the patcher url is not provided or screenshot this message.", serverName);
-                this.Close();
-                return;
-            }
             if (!patcherUrl.EndsWith("/")) patcherUrl += "/";
 
             txtList.Visible = false;
@@ -144,26 +111,6 @@ namespace EQEmu_Patcher
                 }
                 IniLibrary.instance.ClientVersion = currentVersion;
                 IniLibrary.Save();
-            }
-            string suffix = "unk";
-            if (currentVersion == VersionTypes.Titanium) suffix = "tit";
-            if (currentVersion == VersionTypes.Underfoot) suffix = "und";
-            if (currentVersion == VersionTypes.Seeds_Of_Destruction) suffix = "sod";
-            if (currentVersion == VersionTypes.Broken_Mirror) suffix = "bro";
-            if (currentVersion == VersionTypes.Secrets_Of_Feydwer) suffix = "sof";
-            if (currentVersion == VersionTypes.Rain_Of_Fear || currentVersion == VersionTypes.Rain_Of_Fear_2) suffix = "rof";
-
-            bool isSupported = false;
-            foreach (var ver in supportedClients)
-            {
-                if (ver != currentVersion) continue;
-                isSupported = true;
-                break;
-            }
-            if (!isSupported) {
-                MessageBox.Show("The server " + serverName + " does not work with this copy of Everquest (" + currentVersion.ToString().Replace("_", " ") + ")", serverName);
-                this.Close();
-                return;
             }
 
             this.Text = serverName + " (Client: " + currentVersion.ToString().Replace("_", " ") + ")";
@@ -207,12 +154,12 @@ namespace EQEmu_Patcher
                 });
             }));
 
-            string webUrl = $"{filelistUrl}{suffix}/filelist_{suffix}.yml";
+            string webUrl = $"{filelistUrl}rof/filelist_rof.yml";
 
             string response = await DownloadFile(cts, webUrl, "filelist.yml");
             if (response != "")
             {
-                webUrl = $"{filelistUrl}/filelist_{ suffix}.yml";
+                webUrl = $"{filelistUrl}/filelist_rof.yml";
                 response = await DownloadFile(cts, webUrl, "filelist.yml");
                 if (response != "")
                 {
@@ -287,47 +234,8 @@ namespace EQEmu_Patcher
                     this.Close();
                     return;
                 }
-                switch (hash)
-                {
-                    case "85218FC053D8B367F2B704BAC5E30ACC":
-                        currentVersion = VersionTypes.Secrets_Of_Feydwer;
-                        splashLogo.Image = Properties.Resources.sof;
-                        break;
-                    case "859E89987AA636D36B1007F11C2CD6E0":
-                    case "EF07EE6649C9A2BA2EFFC3F346388E1E78B44B48": //one of the torrented uf clients, used by B&R too
-                        currentVersion = VersionTypes.Underfoot;
-                        splashLogo.Image = Properties.Resources.underfoot;
-                        break;
-                    case "A9DE1B8CC5C451B32084656FCACF1103": //p99 client
-                    case "BB42BC3870F59B6424A56FED3289C6D4": //vanilla titanium
-                        currentVersion = VersionTypes.Titanium;
-                        splashLogo.Image = Properties.Resources.titanium;
-                        break;
-                    case "368BB9F425C8A55030A63E606D184445":
-                        currentVersion = VersionTypes.Rain_Of_Fear;
-                        splashLogo.Image = Properties.Resources.rof;
-                        break;
-                    case "240C80800112ADA825C146D7349CE85B":
-                    case "A057A23F030BAA1C4910323B131407105ACAD14D": //This is a custom ROF2 from a torrent download
-                    case "389709EC0E456C3DAE881A61218AAB3F": // This is a 4gb patched eqgame
-                    case "6574AC667D4C522D21A47F4D00920CC2": // Unknown origin, issue #29
-                    case "AE4E4C995DF8842DAE3127E88E724033": // gangsta of RoT 4gb patched eqgame                    
-                    case "3B44C6CD42313CB80C323647BCB296EF": //https://github.com/xackery/eqemupatcher/issues/15
-                    case "513FDC2B5CC63898D7962F0985D5C207": //aslr checksum removed           
-                    case "2FD5E6243BCC909D9FD0587A156A1165": //https://github.com/xackery/eqemupatcher/issues/20
-                    case "26DC13388395A20B73E1B5A08415B0F8": //Legacy of Norrath Custom RoF2 Client https://github.com/xackery/eqemupatcher/issues/16
-                        currentVersion = VersionTypes.Rain_Of_Fear_2;
-                        splashLogo.Image = Properties.Resources.rof;
-                        break;
-                    case "6BFAE252C1A64FE8A3E176CAEE7AAE60": //This is one of the live EQ binaries.
-                    case "AD970AD6DB97E5BB21141C205CAD6E68": //2016/08/27         
-                        currentVersion = VersionTypes.Broken_Mirror;
-                        splashLogo.Image = Properties.Resources.brokenmirror;
-                        break;
-                    default:
-                        currentVersion = VersionTypes.Unknown;
-                        break;
-                }
+                currentVersion = VersionTypes.Rain_Of_Fear;
+                splashLogo.Image = Properties.Resources.rof;
                 if (currentVersion == VersionTypes.Unknown)
                 {
                     if (MessageBox.Show("Unable to recognize the Everquest client in this directory, open a web page to report to devs?", "Visit", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
